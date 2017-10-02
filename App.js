@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import {Link} from "react-router-dom";
-import { FormLabel, FormInput } from 'react-native-elements'
+import { FormLabel, FormInput, Button } from 'react-native-elements'
 
 
 export default class App extends React.Component {
@@ -25,10 +25,10 @@ export default class App extends React.Component {
 				<Text className="title">Illinois State Parks</Text>
 				<View>
 				<Text>Find Parks Close to You!</Text>
-				<View onSubmit={this.handleSubmit.bind(this)}>
+				<View>
 					<FormLabel>Enter your Zip Code:</FormLabel>
 					<FormInput type="text" ref="zip" placeholder="zip code" required />
-					<FormInput type="submit" value="Find Parks"/>
+					<Button title="Find Parks" onPress={this.handleSubmit.bind(this)}/>
 				</View>
 				<View>{parks}</View>
 			</View>
@@ -36,7 +36,9 @@ export default class App extends React.Component {
 		);
 	}
 	handleSubmit = e => {
-		console.log("oi")
+		e.preventDefault();
+		var zip = this.refs.zip.value;
+		console.log(zip)
 	}
 };
 
