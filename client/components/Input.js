@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import { FormLabel, FormInput, Button } from 'react-native-elements'
 
 
-export default class App extends React.Component {
+export default class Parks extends React.Component {
 	state = {
 		parks: []
 	}
@@ -28,19 +28,34 @@ export default class App extends React.Component {
 				<View>
 					<FormLabel>Enter your Zip Code:</FormLabel>
 					<FormInput type="text" ref="zip" placeholder="zip code" required />
-					<Button title="Find Parks" onPress={this.handleSubmit.bind(this)}/>
+					<Button title="Find Parks" onPress={this.handleSubmit}/>
 				</View>
 				<View>{parks}</View>
 			</View>
 			</View>
 		);
 	}
+
+
 	handleSubmit = e => {
 		e.preventDefault();
-		var zip = this.refs.zip.value;
+		var zip = this.refs.zip.input._lastNativeText;
 		console.log(zip)
-	}
-};
+		fetch('http://192.168.56.1:4000/api/parks?zip=' + zip)
+		.then(data => {
+			console.log(data)
+			return data.json();
+		}).then( json => {
+			console.log(json)
+			this.setState({
+				parks: json
+			});
+			
+		}).catch((error) => {
+			console.log(error)
+		})
+	};
+}
 
 
 
@@ -52,3 +67,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+

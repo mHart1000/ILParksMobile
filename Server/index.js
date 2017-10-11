@@ -10,7 +10,7 @@ mongoose.connect('mongodb://localhost/IL-Parks');
 mongoose.Promise = global.Promise;
 
 //set up static files
-app.use(express.static('dist'));
+app.use(express.static('../Client/src'));
 
 // use body-parser middleware
 app.use(bodyParser.json());
