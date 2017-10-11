@@ -1,12 +1,11 @@
 import React from "react";
 import {render} from "react-dom";
 import {BrowserRouter, Route, HashRouter, IndexRoute, Switch, MemoryRouter, } from "react-router-dom";
-import {NativeRouter} from "react-router-native"
+import {Link} from "react-router-native"
 import { StyleSheet, Text, View } from 'react-native';
 import { FormLabel, FormInput, Button } from 'react-native-elements'
 import {createMemoryHistory, createHashHistory} from 'history'
 
-import {Link} from "react-router-dom";
 
 
 export default class App extends React.Component {
@@ -17,12 +16,14 @@ export default class App extends React.Component {
 		var parks = this.state.parks;
 		parks = parks.map(function(park, index){
 			return(
-					<View key={index}>
+				<Link to={`/park-display/${park.obj.name}`} key={index}>
+					<View>
 						<Text className="name">{park.obj.name}</Text>
 						<Text className="dist">{Math.floor(park.dis / 1000)} km</Text>
 					</View>
-			);
-		});
+				</Link>
+			)
+		})
 		return(
 			<View style={styles.container}>
 				<Text className="title">Illinois State Parks</Text>
