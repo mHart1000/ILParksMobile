@@ -33,17 +33,21 @@ export default class ParkDisplay extends React.Component{
 			activities = activities.map(function(key, index){
 				return (
 					<View key={index}>
-						<Image src={"/media/" + key + ".png"}/>
+						<Text>
+							{key}
+						</Text>
 					</View>
-				)
-				
+				)				
 			})
 			console.log(activities)
 		}
 		return(
 			<View id="park-container">
 				<Text className="title">{park.name}</Text>
-				<Image src={park.image_url}/>
+				<Image 
+					style={{width: 150, height: 100}}
+					source={{uri: park.image_url}}
+				/>
 				<Text>{park.address}</Text>
 
 				<View id="display">
@@ -53,9 +57,8 @@ export default class ParkDisplay extends React.Component{
 			</View>
 		)
 	}
-};
-
-
+}
+;
 
 
 
