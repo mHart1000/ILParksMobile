@@ -20,26 +20,36 @@ export default class ParkDisplay extends React.Component{
 			this.setState({
 				park: json
 			});
-		})
+		});
 	}
 	
 	render(){
 		let park = this.state.park[0]
 		console.log(park.activities)
 		let activities = park.activities
-			console.log(activities)
-
+		let images = {
+			camping: require('../media/camping.png'),
+			hiking: require('../media/hiking.png'),
+			picknicking: require('../media/picnicking.png'),
+			biking: require('../media/biking.png'),
+			swimming: require('../media/swimming.png'),
+			boating: require('../media/boating.png'),
+			fishing: require('../media/fishing.png'),
+			hunting: require('../media/hunting.png')
+		}
 		if(activities) {
-			activities = activities.map(function(key, index){
+			activities = activities.map(function(activity, index){
+				let imgSrc = images[activity]
+				console.log(activities, imgSrc, activity)
 				return (
 					<View key={index}>
-						<Text>
-							{key}
-						</Text>
+						<Image 
+							style={{width: 30, height: 20}}
+							source={imgSrc}
+						/>
 					</View>
-				)				
+				)	
 			})
-			console.log(activities)
 		}
 		return(
 			<View id="park-container">
@@ -49,7 +59,6 @@ export default class ParkDisplay extends React.Component{
 					source={{uri: park.image_url}}
 				/>
 				<Text>{park.address}</Text>
-
 				<View id="display">
 					<Text>{park.description}</Text>
 					<View>{activities}</View>
