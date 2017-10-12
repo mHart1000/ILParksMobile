@@ -30,7 +30,7 @@ export default class ParkDisplay extends React.Component{
 		let images = {
 			camping: require('../media/camping.png'),
 			hiking: require('../media/hiking.png'),
-			picknicking: require('../media/picnicking.png'),
+			picnicking: require('../media/picnicking.png'),
 			biking: require('../media/biking.png'),
 			swimming: require('../media/swimming.png'),
 			boating: require('../media/boating.png'),
@@ -44,13 +44,13 @@ export default class ParkDisplay extends React.Component{
 				return (
 					<View key={index}>
 						<Image 
-							style={{width: 30, height: 20}}
+							style={{width: 30, height: 30, margin: 5}}
 							source={imgSrc}
 						/>
 					</View>
 				)	
 			})
-		}
+		};
 		return(
 			<View id="park-container">
 				<Text className="title">{park.name}</Text>
@@ -61,7 +61,7 @@ export default class ParkDisplay extends React.Component{
 				<Text>{park.address}</Text>
 				<View id="display">
 					<Text>{park.description}</Text>
-					<View>{activities}</View>
+					<View style={{flexDirection:'row', flexWrap:'wrap'}}>{activities}</View>
 				</View>
 			</View>
 		)
