@@ -4,7 +4,7 @@ import {Router, Route, Switch} from "react-router-native"
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { FormLabel, FormInput, Button } from 'react-native-elements'
 import {createMemoryHistory, createHashHistory} from 'history'
-
+import MapView from 'react-native-maps'
 
 
 export default class ParkDisplay extends React.Component{
@@ -61,13 +61,22 @@ export default class ParkDisplay extends React.Component{
 				<Text>{park.address}</Text>
 				<View id="display">
 					<Text>{park.description}</Text>
-					<View style={{flexDirection:'row', flexWrap:'wrap'}}>{activities}</View>
+					<MapView
+						style={{width: 150, height: 100}}
+						initialRegion={{
+						  latitude: 37.78825,
+						  longitude: -122.4324,
+						  latitudeDelta: 0.0922,
+						  longitudeDelta: 0.0421,
+						}}
+					/>
+					<View style={{flexDirection:'row', flexWrap:'wrap'}}>{activities}</View>					
 				</View>
 			</View>
 		)
 	}
-}
-;
+};
+
 
 
 
