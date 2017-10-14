@@ -9,7 +9,8 @@ import MapView from 'react-native-maps'
 
 export default class ParkDisplay extends React.Component{
 	state = {
-		park: [{}]
+		park: [{}],
+		coordinates: [0,0]		
 	}
 	
 	componentDidMount() {
@@ -18,14 +19,17 @@ export default class ParkDisplay extends React.Component{
 			return data.json();
 		}).then( json => {
 			this.setState({
-				park: json
-			});
-		});
+				park: json,
+				coordinates: json[0].geometry["coordinates"]
+			})
+		})
 	}
 	
 	render(){
-		let park = this.state.park[0]
-		console.log(park.activities)
+		let park = this.state.park[0];
+		let lon = this.state.coordinates[0];
+		let lat = this.state.coordinates[1];		
+		console.log(lat, lon)
 		let activities = park.activities
 		let images = {
 			camping: require('../media/camping.png'),
@@ -40,7 +44,6 @@ export default class ParkDisplay extends React.Component{
 		if(activities) {
 			activities = activities.map(function(activity, index){
 				let imgSrc = images[activity]
-				console.log(activities, imgSrc, activity)
 				return (
 					<View key={index}>
 						<Image 
@@ -50,7 +53,7 @@ export default class ParkDisplay extends React.Component{
 					</View>
 				)	
 			})
-		};
+		}
 		return(
 			<View id="park-container">
 				<Text className="title">{park.name}</Text>
@@ -61,22 +64,21 @@ export default class ParkDisplay extends React.Component{
 				<Text>{park.address}</Text>
 				<View id="display">
 					<Text>{park.description}</Text>
+					<View style={{flexDirection:'row', flexWrap:'wrap'}}>{activities}</View>	
 					<MapView
-						style={{width: 150, height: 100}}
-						initialRegion={{
-						  latitude: 37.78825,
-						  longitude: -122.4324,
+						style={{width: 150, height: 150}}
+						region={{
+						  latitude: lat,
+						  longitude: lon,
 						  latitudeDelta: 0.0922,
 						  longitudeDelta: 0.0421,
 						}}
-					/>
-					<View style={{flexDirection:'row', flexWrap:'wrap'}}>{activities}</View>					
+					/>					
 				</View>
 			</View>
 		)
 	}
 };
-
 
 
 
