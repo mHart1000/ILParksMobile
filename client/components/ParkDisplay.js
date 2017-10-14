@@ -72,13 +72,19 @@ export default class ParkDisplay extends React.Component{
 						  longitude: lon,
 						  latitudeDelta: 0.0922,
 						  longitudeDelta: 0.0421,
-						}}
-					/>					
+						}}>					
+						<MapView.Marker
+							coordinate={{
+								latitude: lat,
+								longitude: lon,						
+							}}
+						/>
+					</MapView>
 				</View>
 			</View>
 		)
 	}
-};
+}
 
 
 
