@@ -5,6 +5,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import { FormLabel, FormInput, Button } from 'react-native-elements'
 import {createMemoryHistory, createHashHistory} from 'history'
 import MapView from 'react-native-maps'
+import {Link} from "react-router-native"
 
 
 export default class ParkDisplay extends React.Component{
@@ -80,11 +81,16 @@ export default class ParkDisplay extends React.Component{
 							}}
 						/>
 					</MapView>
+					<Link to='/'>
+						<Text>
+							Back
+						</Text>
+					</Link>
 				</View>
 			</View>
 		)
 	}
-}
+};
 
 
 
