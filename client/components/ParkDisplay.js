@@ -30,7 +30,6 @@ export default class ParkDisplay extends React.Component{
 		let park = this.state.park[0];
 		let lon = this.state.coordinates[0];
 		let lat = this.state.coordinates[1];		
-		console.log(lat, lon)
 		let activities = park.activities
 		let images = {
 			camping: require('../media/camping.png'),
@@ -56,16 +55,16 @@ export default class ParkDisplay extends React.Component{
 			})
 		}
 		return(
-			<View id="park-container">
-				<Text className="title">{park.name}</Text>
+			<View  style={styles.container}>
+				<Text style={styles.h2}>{park.name}</Text>
 				<Image 
 					style={{width: 150, height: 100}}
 					source={{uri: park.image_url}}
 				/>
-				<Text>{park.address}</Text>
-				<View id="display">
-					<Text>{park.description}</Text>
-					<View style={{flexDirection:'row', flexWrap:'wrap'}}>{activities}</View>	
+				<Text style={styles.address}>{park.address}</Text>
+				<View style={styles.inner}>
+					<Text style={styles.description}>{park.description}</Text>
+					<View style={styles.activities}>{activities}</View>	
 					<MapView
 						style={{width: 150, height: 150}}
 						region={{
@@ -82,7 +81,7 @@ export default class ParkDisplay extends React.Component{
 						/>
 					</MapView>
 					<Link to='/'>
-						<Text>
+						<Text style={styles.back}>
 							Back
 						</Text>
 					</Link>
@@ -92,6 +91,48 @@ export default class ParkDisplay extends React.Component{
 	}
 };
 
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		backgroundColor: 'green',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	activities: {
+		flexDirection:'row',
+		flexWrap:'wrap',
+		alignItems: 'center',
+	},
+	inner: {
+		alignItems: 'center',
+		paddingLeft: 20,
+		paddingRight: 20,
+	},
+	back: {
+		color: 'white',
+		marginTop: 10,
+	},
+	description: {
+		fontSize: 12,
+		marginTop: 5,
+		marginBottom: 5,
+		backgroundColor: 'white',		
+		paddingTop: 5,
+		paddingBottom: 5,
+		paddingLeft: 5,
+		paddingRight: 5,
 
+	},
+	h2: {
+		fontSize: 18,
+		marginTop: 20,
+		color: 'white',
+
+	},
+	address: {
+		color: 'white',
+		fontSize: 12,
+	}
+})
 
 Expo.registerRootComponent(ParkDisplay)

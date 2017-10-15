@@ -26,48 +26,67 @@ export default class App extends React.Component {
 		})
 		return(
 			<View style={styles.container}>
-				<Text className="title">Illinois State Parks</Text>
-				<View>
-				<Text>Find Parks Close to You!</Text>
-				<View>
-					<FormLabel>Enter your Zip Code:</FormLabel>
-					<FormInput type="text" ref="zip" placeholder="zip code" required />
-					<Button title="Find Parks" onPress={this.handleSubmit}/>
+				<Text style={styles.h1}>Illinois State Parks</Text>
+				<View style={styles.inner}>
+					<Text style={styles.btn}>Find Parks Close to You!</Text>
+					<View style={styles.form}>
+						<FormLabel>Enter your Zip Code:</FormLabel>
+						<FormInput style={styles.input} type="text" ref="zip" placeholder="zip code" required />
+						<Button title="Find Parks" onPress={this.handleSubmit}/>
+					</View>
+					<View>{parks}</View>
 				</View>
-				<View>{parks}</View>
 			</View>
-			</View>
-		);
-	}
+		)
+	};
 
 
 	handleSubmit = e => {
 		e.preventDefault();
 		var zip = this.refs.zip.input._lastNativeText;
-		console.log(zip)
 		fetch('http://192.168.56.1:4000/api/parks?zip=' + zip)
 		.then(data => {
-			console.log(data)
 			return data.json();
 		}).then( json => {
-			console.log(json)
 			this.setState({
 				parks: json
 			});
-			
 		}).catch((error) => {
 			console.log(error)
 		})
-	};
+	}
 }
 
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+	container: {
+		flex: 1,
+		backgroundColor: 'green',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	h1: {
+		fontSize: 35,
+		color: 'white',
+	},
+	inner: {
+		alignItems: 'center',
+		backgroundColor: 'white',
+		marginTop: 20,
+		paddingTop: 40,
+		paddingBottom: 40,
+		paddingLeft: 20,
+		paddingRight: 20,
+	},
+	form: {
+		alignItems: 'center',
+	},
+	input: {
+		width: 200,
+		marginTop: 10,
+		marginBottom: 10,
+		paddingTop: 5,
+		paddingBottom: 10,
+	},
 });
