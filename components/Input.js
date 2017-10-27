@@ -1,10 +1,7 @@
-import React from "react";
-import {render} from "react-dom";
-import {BrowserRouter, Route, HashRouter, IndexRoute, Switch, MemoryRouter, } from "react-router-dom";
-import {Link} from "react-router-native"
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react"
+import { Link } from "react-router-native"
+import { StyleSheet, Text, View } from 'react-native'
 import { FormLabel, FormInput, Button } from 'react-native-elements'
-import {createMemoryHistory, createHashHistory} from 'history'
 
 
 
@@ -38,7 +35,7 @@ export default class App extends React.Component {
 				</View>
 			</View>
 		)
-	};
+	}
 
 
 	handleSubmit = e => {
@@ -89,4 +86,4 @@ const styles = StyleSheet.create({
 		paddingTop: 5,
 		paddingBottom: 10,
 	},
-});
+})

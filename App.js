@@ -1,10 +1,6 @@
-import React from "react";
-import {render} from "react-dom";
-import {Router, Route, Switch} from "react-router-native"
-import { StyleSheet, Text, View, Image } from 'react-native';
-import { FormLabel, FormInput, Button } from 'react-native-elements'
-import {createMemoryHistory, createHashHistory} from 'history'
-
+import React from "react"
+import { Router, Route, Switch} from "react-router-native"
+import { createMemoryHistory } from 'history'
 import Input from "./components/Input.js"
 import ParkDisplay from "./components/ParkDisplay.js"
 

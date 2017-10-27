@@ -1,9 +1,4 @@
 node_modules/
 .expo/
 npm-debug.*
-
-client/node_modules
-
-server/node_modules
-
-client/media
+media/

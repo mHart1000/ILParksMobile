@@ -1,11 +1,7 @@
-import React from "react";
-import {render} from "react-dom";
-import {Router, Route, Switch} from "react-router-native"
-import { StyleSheet, Text, View, Image } from 'react-native';
-import { FormLabel, FormInput, Button } from 'react-native-elements'
-import {createMemoryHistory, createHashHistory} from 'history'
+import React from "react"
+import { StyleSheet, Text, View, Image } from 'react-native'
 import MapView from 'react-native-maps'
-import {Link} from "react-router-native"
+import { Link } from "react-router-native"
 
 
 export default class ParkDisplay extends React.Component{
@@ -27,9 +23,9 @@ export default class ParkDisplay extends React.Component{
 	}
 	
 	render(){
-		let park = this.state.park[0];
-		let lon = this.state.coordinates[0];
-		let lat = this.state.coordinates[1];		
+		let park = this.state.park[0]
+		let lon = this.state.coordinates[0]
+		let lat = this.state.coordinates[1]		
 		let activities = park.activities
 		let images = {
 			camping: require('../media/camping.png'),
@@ -89,7 +85,7 @@ export default class ParkDisplay extends React.Component{
 			</View>
 		)
 	}
-};
+}
 
 const styles = StyleSheet.create({
 	container: {
@@ -135,4 +131,3 @@ const styles = StyleSheet.create({
 	}
 })
 
-Expo.registerRootComponent(ParkDisplay)
